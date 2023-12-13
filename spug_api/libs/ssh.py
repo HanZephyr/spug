@@ -10,6 +10,7 @@ from io import StringIO
 from uuid import uuid4
 import time
 import re
+from django.conf import settings
 
 
 def _finalize_pubkey_algorithm(self, key_type):
@@ -192,7 +193,7 @@ class SSH:
                 if self.regex.search(out):
                     self.stdout = self.channel.makefile('r')
                     break
-            elif counter >= 100:
+            elif counter >= settings.SSH_CHANNEL_WAITING_COUNTER_CNT:
                 self.client.close()
                 raise Exception('Wait spug response timeout')
             else:

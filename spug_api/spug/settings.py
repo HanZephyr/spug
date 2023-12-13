@@ -135,6 +135,8 @@ AUTHENTICATION_EXCLUDES = (
 
 SPUG_VERSION = 'v3.2.7'
 
+SSH_CHANNEL_WAITING_COUNTER_CNT = 200
+
 # override default config
 try:
     from spug.overrides import *
